@@ -8,7 +8,7 @@ For a more in-depth look at the new save file format, please refer to [this past
 
 ## How to Use
 
-The script `convert_save.py` has two variables at the top to control what is executed: `path` and `useFullMaps`. Before running the script, make sure both variables have the correct value for what you want!
+The script `convert_save.py` has two variables at the top to control what is executed: `path` and `useFullMaps`. You can open the script in any text editor to edit it. Before running the script, make sure both variables have the correct value for what you want!
 
 * `path` should be a complete path to the directory containing the save file you want to convert. 
   * Make sure the value uses forward slashes (`/`) instead of back slashes (`\`) if you're on Windows!
