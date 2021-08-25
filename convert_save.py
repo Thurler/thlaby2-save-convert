@@ -157,7 +157,7 @@ for i in range(1, 57):
 # Fully unlock maps
 if (useFullMaps):
   saveFile[0x0ce8e:0x2ae8e] = [0x55]*0x1e000 # 30 floors
-  saveFile[0x33e8e:0x3ee8d] = [0x55]*0xb000  # 11 underground floors
+  saveFile[0x33e8e:0x3ee8e] = [0x55]*0xb000  # 11 underground floors
 
 # A decrypted file for debugging
 with open(path+"/result-decrypted.dat", 'wb') as f:
