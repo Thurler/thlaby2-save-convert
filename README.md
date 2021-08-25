@@ -17,6 +17,16 @@ The script `convert_save.py` has two variables at the top to control what is exe
 
 * `useFullMaps` should be set to `True` to fully unlock all map progress for every floor. You can set it to `False` to fully erase all map progress, too.
 
+After the script runs, you will find two files in your save directory: `result-decrypted.dat` and  `result.dat`.
+
+* `result.dat` is the save file you'll use for the Steam version. It is already encrypted and can be used by simply renaming it to `save1.dat` and moving it to the Steam save directory.
+  * Your Steam save file should be in `%APPDATA%/CUBETYPE/tohoLaby`
+  * If you rename it to `save1.dat`, make sure you already have a `save1.dat` to replace the new file with
+    * If you don't already have a `save1.dat`, the game won't recognize the new save
+
+* `result-decrypted.dat` is the same file as above, but fully decrypted if you want to look at the data on a hex editor.
+  * It's mainly used for troubleshooting, so you can kinda ignore it
+
 ## Installing Python
 
 The script requires Python to be installed in your computer. Python is a scripting programming language, and what you need to install is its interpreter. You can then use the interpreter to run any scripts you download. Installing and running Python in Windows is easy:
