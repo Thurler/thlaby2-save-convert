@@ -1,6 +1,4 @@
-# Update the path below to point to your installation of labyrinth 2, specifically
-# which save you want to convert. DO NOT USE BACKSLASHES ( these guys -> \ )
-path = "C:/Users/yourname/path/to/touhou/labyrinth2/save/save1"
+path = "."
 
 # Set this to True to fully unlock all maps
 # Set this to False to erase all map progress
