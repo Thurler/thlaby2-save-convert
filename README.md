@@ -14,8 +14,9 @@ The script requires Python to be installed in your computer. Python is a scripti
 * Make sure you click the option to add Python to your system's PATH
 * Optionally, install the "py launcher" module to easily run python scripts
 * Download this repository's source code through Github
-* If you installed the py launcher, simply double click "convert_save.py"
-  * You can also open a CMD and type "python main.py" from the directory you downloaded to
+  * There should be a "Download ZIP" option in the page, inside the "Code" dropdown button
+* If you installed the py launcher, simply double click .py files to run them
+  * You can also open a CMD and type "python anyfile.py" from a directory
   * On CMD, you can move around directories using the "cd" command
     * For example, "cd C:\Users\username\Downloads" should put you in your Downloads directory
 
