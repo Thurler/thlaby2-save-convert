@@ -2,7 +2,8 @@ path = "."
 
 # Set this to True to fully unlock all maps
 # Set this to False to erase all map progress
-useFullMaps = True
+# Set to None to convert map progress
+useFullMaps = None
 
 def reverse_endianness_block2(block):
   even = block[::2]
@@ -158,6 +159,32 @@ for i in range(1, 57):
 if (useFullMaps):
   saveFile[0x0ce8e:0x2ae8e] = [0x55]*0x1e000 # 30 floors
   saveFile[0x33e8e:0x3ee8e] = [0x55]*0xb000  # 11 underground floors
+  #(B1F is D40.txt; 31-39 are unused)
+elif (useFullMaps is None):
+  #Old map format: 1 byte per cell. Squares are either "#" (explored) or "." (unexplored)
+  #New map format: 2 bits per cell, packed together for 4 squares per byte.
+  #Data is "rotated", meaning the first "line" in the new format is the first column of the old data.
+  #0x00 is fully unexplored, 0x55 (i.e. 0101 0101) is fully explored.
+  #The maps are the same size as in the standalone version. All maps are 128x128.
+  hashmap = {'.' : 0, '#' : 1}
+  mapstart = 0x0ce8e
+  newMapsize = 128*128//4
+  for i in range(50):
+    filename = f'D{i+1:02}.txt'
+    with open(path+"/"+filename, 'r') as f:
+      data = f.readlines()
+      assert(len(data) == 128)
+    #Read in 4 bytes at once from each file. Need to go "sideways" and read columns first, then rows.
+    #Pack the result into a single byte, ORing and offsetting each bit
+    for x in range(newMapsize):
+      byteval = (hashmap[data[(x*4+0) % 128][(x*4+0) // 128]] << 0 |
+                 hashmap[data[(x*4+1) % 128][(x*4+1) // 128]] << 2 |
+                 hashmap[data[(x*4+2) % 128][(x*4+2) // 128]] << 4 |
+                 hashmap[data[(x*4+3) % 128][(x*4+3) // 128]] << 6)
+      saveFile[mapstart+x] = byteval
+    mapstart += newMapsize
+  assert(mapstart == 0x3ee8e)
+#
 
 # A decrypted file for debugging
 with open(path+"/result-decrypted.dat", 'wb') as f:
